@@ -1,6 +1,7 @@
 package com.example.CRUD.service;
 
 import com.example.CRUD.entity.Student;
+import com.example.CRUD.exception.ResourceNotFoundException;
 import com.example.CRUD.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +26,7 @@ public class StudentService {
 
     public Student getStudentById(Long id) {
         return studentRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Student not found with id " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Student not found with id " + id));
     }
 
     public Student updateStudent(Long id, Student studentDetails) {
@@ -56,4 +57,5 @@ public class StudentService {
         Student student = getStudentById(id);
         studentRepository.delete(student);
     }
+
 }

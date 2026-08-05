@@ -2,6 +2,7 @@ package com.example.CRUD.controller;
 
 import com.example.CRUD.entity.Student;
 import com.example.CRUD.service.StudentService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,11 +20,10 @@ public class StudentController {
     }
 
     @PostMapping
-    public Student createStudent(@RequestBody Student student) {
+    public Student createStudent(@Valid @RequestBody Student student) {
         return studentService.saveStudent(student);
     }
-
-    @GetMapping
+@GetMapping
     public List<Student> getStudents() {
         return studentService.getAllStudents();
     }
